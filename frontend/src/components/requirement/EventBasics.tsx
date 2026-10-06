@@ -19,10 +19,47 @@ export function EventBasics({ form }: EventBasicsProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Event Name *</label>
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Contact Information</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700">Your Name *</label>
+            <input
+              {...register("contactName")}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="e.g. John Doe"
+            />
+            {errors.contactName && <p className="text-sm text-red-500">{errors.contactName?.message as string}</p>}
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700">Email Address *</label>
+            <input
+              type="email"
+              {...register("contactEmail")}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="john@example.com"
+            />
+            {errors.contactEmail && <p className="text-sm text-red-500">{errors.contactEmail?.message as string}</p>}
+          </div>
+
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm font-medium text-gray-700">Phone Number (Optional)</label>
+            <input
+              {...register("contactPhone")}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="e.g. +1 234 567 890"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Event Basics</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700">Event Name *</label>
           <input
             {...register("eventName")}
             className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none"
@@ -79,6 +116,7 @@ export function EventBasics({ form }: EventBasicsProps) {
             placeholder="e.g. Grand Hyatt"
           />
         </div>
+      </div>
       </div>
 
       <div className="pt-6 border-t border-gray-200">

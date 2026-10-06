@@ -5,6 +5,9 @@ export interface RequirementDocument extends IRequirement, Document {}
 
 const requirementSchema = new Schema(
   {
+    contactName: { type: String, required: true },
+    contactEmail: { type: String, required: true },
+    contactPhone: { type: String },
     eventName: { type: String, required: true },
     eventType: { type: String, required: true },
     startDate: { type: Date, required: true },

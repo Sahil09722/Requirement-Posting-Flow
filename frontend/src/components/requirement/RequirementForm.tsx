@@ -17,6 +17,9 @@ import { plannerDetailsSchema, performerDetailsSchema, crewDetailsSchema } from 
 
 // Create a combined schema
 const masterSchema = z.object({
+  contactName: z.string().min(2, 'Contact name is required'),
+  contactEmail: z.string().email('Valid email is required'),
+  contactPhone: z.string().optional(),
   eventName: z.string().min(3, 'Event name must be at least 3 characters'),
   eventType: z.string().min(2, 'Event type is required'),
   startDate: z.string().min(1, 'Start date is required'),
@@ -65,6 +68,9 @@ export function RequirementForm() {
   const form = useForm<RequirementFormData>({
     resolver: zodResolver(masterSchema) as any, 
     defaultValues: {
+      contactName: "",
+      contactEmail: "",
+      contactPhone: "",
       eventName: "",
       eventType: "",
       startDate: "",
@@ -96,7 +102,7 @@ export function RequirementForm() {
     const category = form.getValues("category");
     
     if (currentStep === 1) {
-      fieldsToValidate = ['eventName', 'eventType', 'startDate', 'endDate', 'location', 'category'];
+      fieldsToValidate = ['contactName', 'contactEmail', 'contactPhone', 'eventName', 'eventType', 'startDate', 'endDate', 'location', 'category'];
     } else if (currentStep === 2) {
       if (category === 'planner') fieldsToValidate = ['details.services'];
       if (category === 'performer') fieldsToValidate = ['details.performerType', 'details.genre', 'details.performanceDuration'];

@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 const plannerDetailsSchema = z.object({
   services: z.array(z.string()).min(1, 'Select at least one service'),
-  expectedGuestCount: z.number().int().positive('Guest count must be positive'),
-  estimatedBudget: z.number().nonnegative('Budget cannot be negative'),
+  expectedGuestCount: z.coerce.number().int().positive('Guest count must be positive'),
+  estimatedBudget: z.coerce.number().nonnegative('Budget cannot be negative'),
   experiencePreference: z.string().optional(),
   additionalRequirements: z.string().optional(),
 });
@@ -11,24 +11,27 @@ const plannerDetailsSchema = z.object({
 const performerDetailsSchema = z.object({
   performerType: z.string().min(1, 'Performer type is required'),
   genre: z.string().optional(),
-  performanceDuration: z.number().positive('Duration must be positive'),
-  numberOfPerformers: z.number().int().positive('Number of performers must be positive'),
+  performanceDuration: z.coerce.number().positive('Duration must be positive'),
+  numberOfPerformers: z.coerce.number().int().positive('Number of performers must be positive'),
   equipmentRequired: z.array(z.string()).optional(),
-  estimatedBudget: z.number().nonnegative('Budget cannot be negative'),
+  estimatedBudget: z.coerce.number().nonnegative('Budget cannot be negative'),
   additionalNotes: z.string().optional(),
 });
 
 const crewDetailsSchema = z.object({
   crewType: z.string().min(1, 'Crew type is required'),
-  numberOfCrewMembers: z.number().int().positive('Number of crew members must be positive'),
-  workingHours: z.number().positive('Working hours must be positive'),
+  numberOfCrewMembers: z.coerce.number().int().positive('Number of crew members must be positive'),
+  workingHours: z.coerce.number().positive('Working hours must be positive'),
   equipmentRequirements: z.string().optional(),
-  estimatedBudget: z.number().nonnegative('Budget cannot be negative'),
+  estimatedBudget: z.coerce.number().nonnegative('Budget cannot be negative'),
   additionalRequirements: z.string().optional(),
 });
 
 export const createRequirementSchema = z.object({
   body: z.object({
+    contactName: z.string().min(2),
+    contactEmail: z.string().email(),
+    contactPhone: z.string().optional(),
     eventName: z.string().min(3),
     eventType: z.string().min(2),
     startDate: z.string(),

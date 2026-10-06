@@ -54,6 +54,26 @@ export function ReviewRequirement({ form }: ReviewRequirementProps) {
       </div>
 
       <div>
+        <h3 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Contact Details</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+          <div>
+            <span className="block text-sm font-medium text-gray-500">Name</span>
+            <span className="block text-gray-900">{data.contactName}</span>
+          </div>
+          <div>
+            <span className="block text-sm font-medium text-gray-500">Email</span>
+            <span className="block text-gray-900">{data.contactEmail}</span>
+          </div>
+          {data.contactPhone && (
+            <div>
+              <span className="block text-sm font-medium text-gray-500">Phone</span>
+              <span className="block text-gray-900">{data.contactPhone}</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div>
         <h3 className="text-lg font-medium text-gray-900 border-b pb-2 mb-4">Requirements & Details</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
           {Object.entries(data.details).map(([key, value]) => {

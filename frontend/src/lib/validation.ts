@@ -1,6 +1,9 @@
 import { z } from 'zod';
 
 export const eventBasicsSchema = z.object({
+  contactName: z.string().min(2, 'Contact name is required'),
+  contactEmail: z.string().email('Valid email is required'),
+  contactPhone: z.string().optional(),
   eventName: z.string().min(3, 'Event name must be at least 3 characters'),
   eventType: z.string().min(2, 'Event type is required'),
   startDate: z.string().min(1, 'Start date is required'),
