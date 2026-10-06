@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RequirementFormData } from "@/types/requirement";
+import { RequirementFormData, Category } from "@/types/requirement";
 import { eventBasicsSchema } from "@/lib/validation";
 import { StepIndicator } from "./StepIndicator";
 import { EventBasics } from "./EventBasics";
