@@ -13,6 +13,10 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // Health check
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'GoPratle API is running!' });
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Server is healthy' });
 });
