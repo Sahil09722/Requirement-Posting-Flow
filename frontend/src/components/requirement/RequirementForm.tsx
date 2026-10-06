@@ -87,7 +87,7 @@ export function RequirementForm() {
     setIsSubmitting(true);
     setErrorMsg("");
     try {
-      await api.post("/requirements", data);
+      await api.post("/api/requirements", data);
       setIsSuccess(true);
     } catch (error: any) {
       console.error("Submission failed", error);
